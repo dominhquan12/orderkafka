@@ -12,6 +12,10 @@ public class PaymentProducer {
     private final KafkaTemplate<String, Object> kafkaTemplate;
 
     public void sendPaymentResult(PaymentResultEvent event) {
-        kafkaTemplate.send("payment.result", event);
+        try {
+            kafkaTemplate.send("payment.result", event).get(); // 🔥 block
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -11,15 +11,16 @@ spring:
 
   kafka:
     bootstrap-servers: localhost:9092
-
+    listener:
+      ack-mode: record
     consumer:
-      group-id: order-group
-      auto-offset-reset: earliest
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      properties:
-        spring.json.trusted.packages: "*"
-        spring.json.value.default.type: com.develop.orderkafka.event.OrderCreatedEvent
-        spring.json.use.type.headers: false
+        enable-auto-commit: false
+        group-id: order-group
+        auto-offset-reset: earliest
+        value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+        properties:
+          spring.json.trusted.packages: "*"
+          spring.json.use.type.headers: true
 
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
