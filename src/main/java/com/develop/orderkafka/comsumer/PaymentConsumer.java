@@ -1,4 +1,4 @@
-package com.develop.orderkafka.consumer;
+package com.develop.orderkafka.comsumer;
 
 import com.develop.orderkafka.event.OrderCreatedEvent;
 import com.develop.orderkafka.event.PaymentResultEvent;
@@ -7,9 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 @Component
 @RequiredArgsConstructor
