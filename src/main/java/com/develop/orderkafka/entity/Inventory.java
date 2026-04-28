@@ -4,23 +4,16 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "orders")
-@Getter
-@Setter
+@Table(name = "inventory")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Order {
+public class Inventory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Long productId;
-
     private String productName;
-
-    private int quantity;
-
-    private String status; // CREATED, PAID, FAILED
+    private Integer stock;
 }

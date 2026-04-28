@@ -3,24 +3,23 @@ package com.develop.orderkafka.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.Instant;
+
 @Entity
-@Table(name = "orders")
-@Getter
-@Setter
+@Table(name = "payments")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Order {
+public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long productId;
+    private Long orderId;
+    private String status; // PENDING, PAID, FAILED
 
-    private String productName;
-
-    private int quantity;
-
-    private String status; // CREATED, PAID, FAILED
+    private Integer attempt;
+    private Instant createdAt;
 }

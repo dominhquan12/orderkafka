@@ -7,6 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 public class OrderCreatedEvent {
     private Long orderId;
+    private Long productId;
     private String productName;
     private int quantity;
 }

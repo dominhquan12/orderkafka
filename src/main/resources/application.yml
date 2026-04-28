@@ -3,12 +3,14 @@ spring:
     url: jdbc:postgresql://localhost:5432/orderdb
     username: postgres
     password: postgres
-
+  sql:
+    init:
+      mode: always
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
-
+    defer-datasource-initialization: true
   kafka:
     bootstrap-servers: localhost:9092
     listener:
