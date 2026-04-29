@@ -1,15 +1,17 @@
 package com.develop.orderkafka.strategypattern.exception;
 
+import lombok.Getter;
+
+@Getter
 public class BusinessException extends RuntimeException {
 
     private final String errorCode;
+    private final String messageKey;
+    private final Object[] args;
 
     public BusinessException(ErrorCode errorCode, Object... args) {
-        super(String.format(errorCode.getMessage(), args));
         this.errorCode = errorCode.getCode();
-    }
-
-    public String getErrorCode() {
-        return errorCode;
+        this.messageKey = errorCode.getMessageKey();
+        this.args = args;
     }
 }
