@@ -3,6 +3,7 @@ package com.develop.orderkafka.strategypattern.exception;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -33,5 +34,16 @@ public class GlobalExceptionHandler {
         body.put("message", message);
 
         return ResponseEntity.badRequest().body(body);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationErrors(MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+
+        ex.getBindingResult().getFieldErrors().forEach(error ->
+                errors.put(error.getField(), error.getDefaultMessage())
+        );
+
+        return errors;
     }
 }
